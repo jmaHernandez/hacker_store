@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Orders</h1>
+</div>
+
+<p>
+  <%= link_to 'New Order', new_user_order_path(@user), :class => 'btn btn-primary' %>  
+</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Line Items</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.name %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to order.line_items.count, user_order_line_items_path(@user, order), :class => 'btn btn-xs btn-info' %></td>
+        <td>
+          <%= link_to 'Edit', edit_user_order_path(@user, order), :class => 'btn btn-xs btn-warning' %>
+          <%= link_to 'Delete', user_order_path(@user, order), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

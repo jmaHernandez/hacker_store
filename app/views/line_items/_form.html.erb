@@ -1,0 +1,36 @@
+<% if @line_item.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@line_item.errors.count, "error") %> prohibited this order from being saved:</h2>
+    <ul>
+      <% @line_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<!--
+<div class="form-group">
+  <%= f.label :order_id, :class => 'control-label col-lg-2' %>
+  <div class="col-lg-10">
+    <%= f.text_field :order_id, :class => 'form-control' %>
+  </div>
+</div>
+<%=f.error_span(:order_id) %>
+-->
+
+<div class="form-group">
+  <%= f.label :product_id, :class => 'control-label col-lg-2' %>
+  <div class="col-lg-10">
+    <%= f.collection_select :product_id, Product.all, :id, :name, { prompt: 'Select a product'}, { class: 'form-control' } %>
+  </div>
+</div>
+<!-- <%=f.error_span(:product_id) %> -->
+
+<div class="form-group">
+  <%= f.label :quantity, :class => 'control-label col-lg-2' %>
+  <div class="col-lg-10">
+    <%= f.number_field :quantity, :class => 'form-control' %>
+  </div>
+</div>
+<!-- <%=f.error_span(:quantity) %> -->
